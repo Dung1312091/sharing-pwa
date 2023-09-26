@@ -20,6 +20,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "postcss.config.js"],
+  "include": ["src", "postcss.config.js", "registerSW.js"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
