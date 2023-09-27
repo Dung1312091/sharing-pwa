@@ -6,7 +6,10 @@ if ("serviceWorker" in navigator) {
     await navigator.serviceWorker.ready;
     if (!register?.pushManager) return;
     const isSubscription = await register.pushManager.getSubscription();
-
+    prompt(
+      "Copy to subscription information",
+      JSON.stringify(isSubscription, undefined, 2)
+    );
     if (isSubscription) return;
 
     const subscription = await register.pushManager.subscribe({
@@ -14,7 +17,10 @@ if ("serviceWorker" in navigator) {
       applicationServerKey:
         "BCLIHqtOvJRwlP4yk8wneLdJtiAROUITNJRCNxiLTmCbnqKGTTlegs53kDb0_79LbcmKJ-nD3ya-PkZg8bQEuD0",
     });
-    alert(JSON.stringify(subscription, undefined, 2));
+    prompt(
+      "Copy to subscription information",
+      JSON.stringify(subscription, undefined, 2)
+    );
     const payload = {
       subscribe: JSON.stringify(subscription),
     };
