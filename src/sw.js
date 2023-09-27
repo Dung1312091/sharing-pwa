@@ -6,7 +6,7 @@ import { CacheableResponsePlugin } from "workbox-cacheable-response/CacheableRes
 
 // Register precache routes (static cache)
 precacheAndRoute(self.__WB_MANIFEST || []);
-// Clean up old cache
+// Clean up incompatible precaches that were created by older versions of Workbox.
 cleanupOutdatedCaches();
 
 // Google fonts dynamic cache
@@ -15,20 +15,24 @@ registerRoute(
   new CacheFirst({
     cacheName: "google-fonts-cache",
     plugins: [
-      new ExpirationPlugin({ maxEntries: 500, maxAgeSeconds: 5184e3 }),
+      new ExpirationPlugin({
+        maxEntries: 500,
+        maxAgeSeconds: 60 * 60 * 24 * 30,
+      }),
       new CacheableResponsePlugin({ statuses: [0, 200] }),
     ],
   }),
   "GET"
 );
-
-// Google fonts dynamic cache
 registerRoute(
   /^https:\/\/fonts\.gstatic\.com\/.*/i,
   new CacheFirst({
     cacheName: "gstatic-fonts-cache",
     plugins: [
-      new ExpirationPlugin({ maxEntries: 500, maxAgeSeconds: 5184e3 }),
+      new ExpirationPlugin({
+        maxEntries: 500,
+        maxAgeSeconds: 60 * 60 * 24 * 30,
+      }),
       new CacheableResponsePlugin({ statuses: [0, 200] }),
     ],
   }),

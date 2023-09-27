@@ -14,7 +14,8 @@ if ("serviceWorker" in navigator) {
       applicationServerKey:
         "BCLIHqtOvJRwlP4yk8wneLdJtiAROUITNJRCNxiLTmCbnqKGTTlegs53kDb0_79LbcmKJ-nD3ya-PkZg8bQEuD0",
     });
-
+    const subscriptionEle = document.getElementById("subscription");
+    subscriptionEle.innerText = JSON.stringify(subscription, undefined, 2);
     const payload = {
       subscribe: JSON.stringify(subscription),
     };
